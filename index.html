@@ -279,6 +279,34 @@
   .event-tag { display: none; }
   }
 
+
+  /* ── LANGUAGE TOGGLE ── */
+  .lang-toggle {
+    display: flex;
+    gap: 4px;
+    margin-left: auto;
+  }
+  .lang-btn {
+    padding: 6px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+  }
+  .lang-btn.active {
+    background: var(--cyan);
+    color: #0D0D0D;
+    border-color: var(--cyan);
+  }
+  .lang-btn:hover:not(.active) { border-color: #555; color: var(--text); }
+  [data-lang] { transition: opacity 0.15s; }
+
   /* ── TICKETS TAB ── */
   #tab-tickets { padding-top: 32px; }
   .tickets-grid {
@@ -415,6 +443,11 @@
   <button class="tab-btn active" onclick="switchTab('itinerary',this)">Itinerary</button>
   <button class="tab-btn" onclick="switchTab('map',this)">Map</button>
   <button class="tab-btn" onclick="switchTab('tickets',this)">Tickets 🎫</button>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('th',this)">ไทย</button>
+    <button class="lang-btn" onclick="setLang('lo',this)">ລາວ</button>
+    <button class="lang-btn" onclick="setLang('en',this)">EN</button>
+  </div>
 </nav>
 
 <main>
@@ -430,7 +463,7 @@
     <div class="day-section" style="animation-delay:.05s">
       <div class="day-header">
         <div class="day-chip">Apr 30 · Thu</div>
-        <div class="day-title-text">Nongkhai — Check-in</div>
+        <div class="day-title-text" data-th="หนองคาย — เช็คอิน" data-lo="ໜອງຄາຍ — ເຊັກອິນ" data-en="Nongkhai — Check-in">Nongkhai — Check-in</div>
         <div class="day-line"></div>
       </div>
       <div class="events-grid">
@@ -439,7 +472,7 @@
           <div class="event-time">14:00</div>
           <div class="event-badge badge-hotel">🏨</div>
           <div class="event-info">
-            <div class="event-name">Amanta Hotel Nongkhai</div>
+            <div class="event-name" data-th="โรงแรมอมันตา หนองคาย" data-lo="ໂຮງແຮມ Amanta ໜອງຄາຍ" data-en="Amanta Hotel Nongkhai">Amanta Hotel Nongkhai</div>
             <div class="event-detail">Stay 1 night before crossing to Laos</div>
           </div>
           <div class="event-tag tag-hotel">Hotel</div>
@@ -455,7 +488,7 @@
     <div class="day-section" style="animation-delay:.1s">
       <div class="day-header">
         <div class="day-chip">May 1 · Fri</div>
-        <div class="day-title-text">Vientiane → Luang Prabang</div>
+        <div class="day-title-text" data-th="เวียงจันทน์ → หลวงพระบาง" data-lo="ວຽງຈັນ → ຫຼວງພະບາງ" data-en="Vientiane → Luang Prabang">Vientiane → Luang Prabang</div>
         <div class="day-line"></div>
       </div>
       <div class="events-grid">
@@ -464,7 +497,7 @@
           <div class="event-time">07:00</div>
           <div class="event-badge badge-activity">⭐</div>
           <div class="event-info">
-            <div class="event-name">Leave for Vientiane Station</div>
+            <div class="event-name" data-th="เดินทางไปสถานีเวียงจันทน์" data-lo="ໄປສະຖານີວຽງຈັນ" data-en="Leave for Vientiane Station">Leave for Vientiane Station</div>
             <div class="event-detail">Leave Amanta Nongkhai to catch train</div>
           </div>
           <div class="event-tag tag-activity">Key</div>
@@ -477,7 +510,7 @@
           <div class="event-time">09:50</div>
           <div class="event-badge badge-train">🚂</div>
           <div class="event-info">
-            <div class="event-name">Train C92 — Vientiane → Luang Prabang</div>
+            <div class="event-name" data-th="รถไฟ C92 — เวียงจันทน์ → หลวงพระบาง" data-lo="ລົດໄຟ C92 — ວຽງຈັນ → ຫຼວງພະບາງ" data-en="Train C92 — Vientiane → Luang Prabang">Train C92 — Vientiane → Luang Prabang</div>
             <div class="event-detail">Seat 01F and 01D</div>
           </div>
           <div class="event-tag tag-train">Train</div>
@@ -492,7 +525,7 @@
           <div class="event-time">12:00</div>
           <div class="event-badge badge-food">🍜</div>
           <div class="event-info">
-            <div class="event-name">ส้มตำปาตึ้ม</div>
+            <div class="event-name" data-th="ส้มตำปาตึ้ม" data-lo="ສົ້ມຕໍາປາຕຶ້ມ" data-en="Som Tam Pa Tuem">ส้มตำปาตึ้ม</div>
           </div>
           <div class="event-tag tag-food">Lunch</div>
           <a href="https://www.google.com/maps/search/?api=1&query=Talat%20Sao%20Mall%20Vientiane" target="_blank" class="map-link" title="Open in Google Maps">📍</a>
@@ -504,7 +537,7 @@
           <div class="event-time">14:00</div>
           <div class="event-badge badge-hotel">🏨</div>
           <div class="event-info">
-            <div class="event-name">U Luang Prabang</div>
+            <div class="event-name" data-th="โรงแรม U หลวงพระบาง" data-lo="ໂຮງແຮມ U ຫຼວງພະບາງ" data-en="U Luang Prabang">U Luang Prabang</div>
             <div class="event-detail">Premier with Bathtub · 2 nights</div>
           </div>
           <div class="event-tag tag-hotel">Hotel</div>
@@ -519,9 +552,10 @@
           <div class="event-time">17:00</div>
           <div class="event-badge badge-sight">🛕</div>
           <div class="event-info">
-            <div class="event-name">วัดเชียงทอง (Wat Xieng Thong)</div>
+            <div class="event-name" data-th="วัดเชียงทอง" data-lo="ວັດຊຽງທອງ" data-en="Wat Xieng Thong">วัดเชียงทอง (Wat Xieng Thong)</div>
           </div>
           <div class="event-tag tag-sight">Sight</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=Wat%20Xieng%20Thong%20Luang%20Prabang" target="_blank" class="map-link" title="Open in Google Maps">📍</a>
         
   </div>
   <img class="event-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Luang_prabang_wat_xiengthong.jpg/1280px-Luang_prabang_wat_xiengthong.jpg" alt="วัดเชียงทอง (Wat Xieng Thong)" loading="lazy" onerror="this.style.display='none'">
@@ -532,7 +566,7 @@
           <div class="event-time">19:00</div>
           <div class="event-badge badge-food">🍽</div>
           <div class="event-info">
-            <div class="event-name">Gaspard Restaurant</div>
+            <div class="event-name" data-th="ร้านอาหาร Gaspard" data-lo="ຮ້ານອາຫານ Gaspard" data-en="Gaspard Restaurant">Gaspard Restaurant</div>
           </div>
           <div class="event-tag tag-food">Dinner</div>
           <a href="https://www.google.com/maps/search/?api=1&query=Gaspard%20Restaurant%20Luang%20Prabang" target="_blank" class="map-link" title="Open in Google Maps">📍</a>
@@ -547,7 +581,7 @@
     <div class="day-section" style="animation-delay:.15s">
       <div class="day-header">
         <div class="day-chip">May 2 · Sat</div>
-        <div class="day-title-text">Kuang Si Falls Day</div>
+        <div class="day-title-text" data-th="วันน้ำตกกวางซี" data-lo="ວັນນ້ຳຕົກກວາງຊີ" data-en="Kuang Si Falls Day">Kuang Si Falls Day</div>
         <div class="day-line"></div>
       </div>
       <div class="events-grid">
@@ -556,7 +590,7 @@
           <div class="event-time">07:00</div>
           <div class="event-badge badge-moto">🏍</div>
           <div class="event-info">
-            <div class="event-name">Go to Tad Kuang Xi Waterfall</div>
+            <div class="event-name" data-th="เดินทางไปน้ำตกตาดกวางซี" data-lo="ໄປນ້ຳຕົກຕາດກວາງຊີ" data-en="Go to Tad Kuang Xi Waterfall">Go to Tad Kuang Xi Waterfall</div>
             <div class="event-detail">Rent motorcycle</div>
           </div>
           <div class="event-tag tag-moto">Moto</div>
@@ -571,7 +605,7 @@
           <div class="event-time">08:00</div>
           <div class="event-badge badge-activity">⭐</div>
           <div class="event-info">
-            <div class="event-name">Tad Kuang Xi Waterfall</div>
+            <div class="event-name" data-th="น้ำตกตาดกวางซี" data-lo="ນ້ຳຕົກຕາດກວາງຊີ" data-en="Tad Kuang Xi Waterfall">Tad Kuang Xi Waterfall</div>
           </div>
           <div class="event-tag tag-activity">Key</div>
           <a href="https://www.google.com/maps/search/?api=1&query=Kuang%20Si%20Falls%20Luang%20Prabang" target="_blank" class="map-link" title="Open in Google Maps">📍</a>
@@ -585,7 +619,7 @@
           <div class="event-time">12:00</div>
           <div class="event-badge badge-food">🍽</div>
           <div class="event-info">
-            <div class="event-name">Carp Diem / Forest Bistro</div>
+            <div class="event-name" data-th="Carp Diem / Forest Bistro" data-lo="Carp Diem / Forest Bistro" data-en="Carp Diem / Forest Bistro">Carp Diem / Forest Bistro</div>
           </div>
           <div class="event-tag tag-food">Lunch</div>
           <a href="https://www.google.com/maps/search/?api=1&query=Kuang%20Si%20Falls%20Luang%20Prabang" target="_blank" class="map-link" title="Open in Google Maps">📍</a>
@@ -599,7 +633,7 @@
           <div class="event-time">13:00</div>
           <div class="event-badge badge-food">☕</div>
           <div class="event-info">
-            <div class="event-name">Luang Prabang Buffalo Diary</div>
+            <div class="event-name" data-th="Luang Prabang Buffalo Diary" data-lo="Luang Prabang Buffalo Diary" data-en="Luang Prabang Buffalo Diary">Luang Prabang Buffalo Diary</div>
           </div>
           <div class="event-tag tag-food">Snack</div>
           <a href="https://www.google.com/maps/search/?api=1&query=Luang%20Prabang%20Buffalo%20Diary" target="_blank" class="map-link" title="Open in Google Maps">📍</a>
@@ -611,7 +645,7 @@
           <div class="event-time">14:00</div>
           <div class="event-badge badge-moto">🏍</div>
           <div class="event-info">
-            <div class="event-name">กลับหลวงพระบาง</div>
+            <div class="event-name" data-th="กลับหลวงพระบาง" data-lo="ກັບຫຼວງພະບາງ" data-en="Return to Luang Prabang">กลับหลวงพระบาง</div>
           </div>
           <div class="event-tag tag-moto">Moto</div>
           <a href="https://www.google.com/maps/search/?api=1&query=U%20Luang%20Prabang%20Hotel" target="_blank" class="map-link" title="Open in Google Maps">📍</a>
@@ -623,7 +657,7 @@
           <div class="event-time">15:30</div>
           <div class="event-badge badge-shopping">🛍</div>
           <div class="event-info">
-            <div class="event-name">BAI MIENG Lao Ancient Tea Shop</div>
+            <div class="event-name" data-th="ร้านชา BAI MIENG" data-lo="ຮ້ານຊາ BAI MIENG" data-en="BAI MIENG Lao Ancient Tea Shop">BAI MIENG Lao Ancient Tea Shop</div>
           </div>
           <div class="event-tag tag-shopping">Shop</div>
           <a href="https://www.google.com/maps/search/?api=1&query=BAI%20MIENG%20Lao%20Ancient%20Tea%20Shop%20Luang%20Prabang" target="_blank" class="map-link" title="Open in Google Maps">📍</a>
@@ -635,7 +669,7 @@
           <div class="event-time">18:00</div>
           <div class="event-badge badge-food">🍽</div>
           <div class="event-info">
-            <div class="event-name">Dalongyan Hotpot Luang Prabang</div>
+            <div class="event-name" data-th="ดาหลงหยาน ชาบู หลวงพระบาง" data-lo="Dalongyan Hotpot ຫຼວງພະບາງ" data-en="Dalongyan Hotpot Luang Prabang">Dalongyan Hotpot Luang Prabang</div>
           </div>
           <div class="event-tag tag-food">Dinner</div>
           <a href="https://www.google.com/maps/search/?api=1&query=BAI%20MIENG%20Lao%20Ancient%20Tea%20Shop%20Luang%20Prabang" target="_blank" class="map-link" title="Open in Google Maps">📍</a>
@@ -650,7 +684,7 @@
     <div class="day-section" style="animation-delay:.2s">
       <div class="day-header">
         <div class="day-chip">May 3 · Sun</div>
-        <div class="day-title-text">Luang Prabang → Vang Vieng</div>
+        <div class="day-title-text" data-th="หลวงพระบาง → วังเวียง" data-lo="ຫຼວງພະບາງ → ວັງວຽງ" data-en="Luang Prabang → Vang Vieng">Luang Prabang → Vang Vieng</div>
         <div class="day-line"></div>
       </div>
       <div class="events-grid">
@@ -659,7 +693,7 @@
           <div class="event-time">09:00</div>
           <div class="event-badge badge-food">☕</div>
           <div class="event-info">
-            <div class="event-name">Breakfast at U Luang Prabang</div>
+            <div class="event-name" data-th="อาหารเช้าที่ U หลวงพระบาง" data-lo="ອາຫານເຊົ້າທີ່ U ຫຼວງພະບາງ" data-en="Breakfast at U Luang Prabang">Breakfast at U Luang Prabang</div>
           </div>
           <div class="event-tag tag-food">Breakfast</div>
           <a href="https://www.google.com/maps/search/?api=1&query=U%20Luang%20Prabang%20Hotel" target="_blank" class="map-link" title="Open in Google Maps">📍</a>
@@ -673,7 +707,7 @@
           <div class="event-time">12:28</div>
           <div class="event-badge badge-train">🚂</div>
           <div class="event-info">
-            <div class="event-name">Train C91 — Luang Prabang → Vang Vieng</div>
+            <div class="event-name" data-th="รถไฟ C91 — หลวงพระบาง → วังเวียง" data-lo="ລົດໄຟ C91 — ຫຼວງພະບາງ → ວັງວຽງ" data-en="Train C91 — Luang Prabang → Vang Vieng">Train C91 — Luang Prabang → Vang Vieng</div>
             <div class="event-detail">Seat 08F and 08D</div>
           </div>
           <div class="event-tag tag-train">Train</div>
@@ -688,7 +722,7 @@
           <div class="event-time">14:00</div>
           <div class="event-badge badge-hotel">🏨</div>
           <div class="event-info">
-            <div class="event-name">Amari Vang Vieng</div>
+            <div class="event-name" data-th="โรงแรม Amari วังเวียง" data-lo="ໂຮງແຮມ Amari ວັງວຽງ" data-en="Amari Vang Vieng">Amari Vang Vieng</div>
             <div class="event-detail">Deluxe King City View · 1 night</div>
           </div>
           <div class="event-tag tag-hotel">Hotel</div>
@@ -703,7 +737,7 @@
           <div class="event-time">14:30</div>
           <div class="event-badge badge-moto">🏍</div>
           <div class="event-info">
-            <div class="event-name">Angle Cave, Tham None</div>
+            <div class="event-name" data-th="ถ้ำทามนม วังเวียง" data-lo="ຖ້ຳທ່າມນົມ ວັງວຽງ" data-en="Angle Cave, Tham None">Angle Cave, Tham None</div>
             <div class="event-detail">Motorcycle trip to caves</div>
           </div>
           <div class="event-tag tag-moto">Moto</div>
@@ -718,7 +752,7 @@
           <div class="event-time">17:00</div>
           <div class="event-badge badge-activity">🛶</div>
           <div class="event-info">
-            <div class="event-name">Tubing / Kayaking — Song River</div>
+            <div class="event-name" data-th="ล่องแพ / คายัค — แม่น้ำซอง" data-lo="ຫຼໄຍ / ຄາຍັກ — ແມ່ນ້ຳຊອງ" data-en="Tubing / Kayaking — Song River">Tubing / Kayaking — Song River</div>
           </div>
           <div class="event-tag tag-activity">Activity</div>
           <a href="https://www.google.com/maps/search/?api=1&query=Nam%20Song%20River%20Vang%20Vieng" target="_blank" class="map-link" title="Open in Google Maps">📍</a>
@@ -732,7 +766,7 @@
           <div class="event-time">18:00</div>
           <div class="event-badge badge-food">🍽</div>
           <div class="event-info">
-            <div class="event-name">Big Mama Sandwich</div>
+            <div class="event-name" data-th="ร้านบิ๊กมาม่า แซนวิช" data-lo="ຮ້ານ Big Mama Sandwich" data-en="Big Mama Sandwich">Big Mama Sandwich</div>
           </div>
           <div class="event-tag tag-food">Dinner</div>
           <a href="https://www.google.com/maps/search/?api=1&query=Big%20Mama%20Sandwich%20Vang%20Vieng" target="_blank" class="map-link" title="Open in Google Maps">📍</a>
@@ -745,7 +779,7 @@
     <div class="day-section" style="animation-delay:.25s">
       <div class="day-header">
         <div class="day-chip">May 4 · Mon</div>
-        <div class="day-title-text">Vang Vieng → Vientiane → Home</div>
+        <div class="day-title-text" data-th="วังเวียง → เวียงจันทน์ → กลับบ้าน" data-lo="ວັງວຽງ → ວຽງຈັນ → ກັບເຮືອນ" data-en="Vang Vieng → Vientiane → Home">Vang Vieng → Vientiane → Home</div>
         <div class="day-line"></div>
       </div>
       <div class="events-grid">
@@ -754,7 +788,7 @@
           <div class="event-time">08:00</div>
           <div class="event-badge badge-sight">🏞</div>
           <div class="event-info">
-            <div class="event-name">Pha Nam Xay</div>
+            <div class="event-name" data-th="ผาน้ำแซ" data-lo="ຜາລ້ຳແຊ" data-en="Pha Nam Xay">Pha Nam Xay</div>
             <div class="event-detail">ชมวิวก่อนกลับ · ประมาณ 2 ชั่วโมง</div>
           </div>
           <div class="event-tag tag-sight">Sight</div>
@@ -769,7 +803,7 @@
           <div class="event-time">13:38</div>
           <div class="event-badge badge-train">🚂</div>
           <div class="event-info">
-            <div class="event-name">Train C91 — Vang Vieng → Vientiane</div>
+            <div class="event-name" data-th="รถไฟ C91 — วังเวียง → เวียงจันทน์" data-lo="ລົດໄຟ C91 — ວັງວຽງ → ວຽງຈັນ" data-en="Train C91 — Vang Vieng → Vientiane">Train C91 — Vang Vieng → Vientiane</div>
             <div class="event-detail">Seat 01F and 01D</div>
           </div>
           <div class="event-tag tag-train">Train</div>
@@ -784,7 +818,7 @@
           <div class="event-time">15:30</div>
           <div class="event-badge badge-shopping">🛍</div>
           <div class="event-info">
-            <div class="event-name">Talat Sao / Parkson — Vientiane</div>
+            <div class="event-name" data-th="ตาลาดเซ้า / พาร์คสัน — เวียงจันทน์" data-lo="ຕະຫຼາດເຊົ້າ / Parkson — ວຽງຈັນ" data-en="Talat Sao / Parkson — Vientiane">Talat Sao / Parkson — Vientiane</div>
             <div class="event-detail">Siam Laos area · souvenir shopping</div>
           </div>
           <div class="event-tag tag-shopping">Shop</div>
@@ -799,7 +833,7 @@
           <div class="event-time">17:30</div>
           <div class="event-badge badge-activity">🏁</div>
           <div class="event-info">
-            <div class="event-name">Leave for Nongkhai</div>
+            <div class="event-name" data-th="เดินทางกลับหนองคาย" data-lo="ກັບໜອງຄາຍ" data-en="Leave for Nongkhai">Leave for Nongkhai</div>
           </div>
           <div class="event-tag tag-activity">Depart</div>
           <a href="https://www.google.com/maps/search/?api=1&query=Amanta%20Hotel%20Nongkhai" target="_blank" class="map-link" title="Open in Google Maps">📍</a>
@@ -1066,6 +1100,26 @@ function filterMap(city, btn) {
   if(any) map.fitBounds(bounds,{padding:80});
 }
 
+
+
+// ── LANGUAGE SWITCHER ──
+let currentLang = 'th';
+function setLang(lang, btn) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('[data-th]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val) el.textContent = val;
+  });
+}
+// Set Thai on load
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-th]').forEach(el => {
+    const val = el.getAttribute('data-th');
+    if (val) el.textContent = val;
+  });
+});
 
 function openLightbox(src) {
   document.getElementById('lb-img').src = src;
