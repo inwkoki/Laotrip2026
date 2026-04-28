@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laos Trip 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0D0D0D;
+    --surface: #161616;
+    --surface2: #1E1E1E;
+    --border: #2A2A2A;
+    --text: #F0F0F0;
+    --muted: #888;
+    --lime: #C6FF4E;
+    --cyan: #3FE8D8;
+    --pink: #FF5C8A;
+    --orange: #FF7A3D;
+    --purple: #A78BFA;
+    --yellow: #FFD43B;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', 'Noto Sans Thai', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    padding: 48px 40px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--lime);
+    color: #0D0D0D;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .header-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #0D0D0D;
+    animation: blink 1.4s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(52px, 10vw, 96px);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--text);
+  }
+  h1 span { color: var(--lime); }
+  .header-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+  }
+  .meta-pill span { color: var(--text); }
+  nav.tabs {
+    display: flex;
+    gap: 4px;
+    padding: 12px 40px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .tab-btn {
+    padding: 8px 20px;
+    border-radius: 100px;
+    border: 1px solid transparent;
+    background: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-btn.active { background: var(--lime); color: #0D0D0D; font-weight: 700; }
+  .tab-btn:hover:not(.active) { border-color: var(--border); color: var(--text); }
+  main { max-width: 1100px; margin: 0 auto; padding: 0 40px 80px; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 32px 0;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .stat-card:nth-child(1)::before { background: var(--lime); }
+  .stat-card:nth-child(2)::before { background: var(--cyan); }
+  .stat-card:nth-child(3)::before { background: var(--pink); }
+  .stat-card:nth-child(4)::before { background: var(--orange); }
+  .stat-num { font-size: 40px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+  .stat-card:nth-child(1) .stat-num { color: var(--lime); }
+  .stat-card:nth-child(2) .stat-num { color: var(--cyan); }
+  .stat-card:nth-child(3) .stat-num { color: var(--pink); }
+  .stat-card:nth-child(4) .stat-num { color: var(--orange); }
+  .stat-label { font-size: 12px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+  .day-section { margin-top: 48px; animation: fadeUp 0.4s ease both; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  .day-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .day-chip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .day-title-text { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+  .day-line { flex: 1; height: 1px; background: var(--border); }
+  .events-grid { display: flex; flex-direction: column; gap: 8px; }
+  .event-card {
+    display: grid;
+    grid-template-columns: 72px auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 18px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .event-card:hover { border-color: #3a3a3a; transform: translateX(4px); }
+  .event-card.key { border-color: rgba(198,255,78,0.3); background: rgba(198,255,78,0.04); }
+  .event-time { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--muted); text-align: right; }
+  .event-badge {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 10px; font-size: 16px; flex-shrink: 0;
+  }
+  .badge-hotel    { background: rgba(167,139,250,0.15); }
+  .badge-train    { background: rgba(63,232,216,0.15); }
+  .badge-food     { background: rgba(255,122,61,0.15); }
+  .badge-sight    { background: rgba(255,92,138,0.15); }
+  .badge-activity { background: rgba(198,255,78,0.15); }
+  .badge-shopping { background: rgba(255,212,59,0.15); }
+  .badge-moto     { background: rgba(63,232,216,0.12); }
+  .event-name { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.3; }
+  .event-detail { font-size: 12px; color: var(--muted); margin-top: 2px; font-family: 'Space Mono', monospace; }
+  .event-tag {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 100px; white-space: nowrap;
+  }
+  .tag-hotel    { background: rgba(167,139,250,0.15); color: var(--purple); }
+  .tag-train    { background: rgba(63,232,216,0.12); color: var(--cyan); }
+  .tag-food     { background: rgba(255,122,61,0.12); color: var(--orange); }
+  .tag-sight    { background: rgba(255,92,138,0.12); color: var(--pink); }
+  .tag-activity { background: rgba(198,255,78,0.12); color: var(--lime); }
+  .tag-shopping { background: rgba(255,212,59,0.12); color: var(--yellow); }
+  .tag-moto     { background: rgba(63,232,216,0.08); color: var(--cyan); }
+  #map-section { padding-top: 32px; }
+  .filter-row { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 7px 18px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
+    color: var(--muted); cursor: pointer; border-radius: 100px; transition: all 0.2s;
+  }
+  .filter-btn.active, .filter-btn:hover { background: var(--lime); color: #0D0D0D; border-color: var(--lime); }
+  #map-box { width: 100%; height: 580px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
+  #map { width: 100%; height: 100%; }
+  .map-legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 16px; }
+  .leg { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); font-family: 'Space Mono', monospace; }
+  .leg-dot { width: 10px; height: 10px; border-radius: 50%; }
+  @media (max-width: 700px) {
+    header { padding: 36px 20px 32px; }
+    nav.tabs { padding: 10px 16px; }
+    main { padding: 0 16px 60px; }
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    .event-card { grid-template-columns: 56px auto 1fr; }
+    .event-tag { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">Trip · 2026</div>
+  <h1>LAO<span>S</span><br>TRIP</h1>
+  <div class="header-meta">
+    <div class="meta-pill">📅 <span>Apr 30 – May 4</span></div>
+    <div class="meta-pill">📍 <span>Nongkhai → LP → VV → Vientiane</span></div>
+    <div class="meta-pill">🚂 <span>Laos-China Railway</span></div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" onclick="switchTab('itinerary',this)">Itinerary</button>
+  <button class="tab-btn" onclick="switchTab('map',this)">Map</button>
+</nav>
+
+<main>
+  <div class="summary-grid">
+    <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Days</div></div>
+    <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Cities</div></div>
+    <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Hotels</div></div>
+    <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Trains</div></div>
+  </div>
+
+  <div id="tab-itinerary" class="tab-content active">
+
+    <div class="day-section" style="animation-delay:.05s">
+      <div class="day-header">
+        <div class="day-chip">Apr 30 · Thu</div>
+        <div class="day-title-text">Nongkhai — Check-in</div>
+        <div class="day-line"></div>
+      </div>
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-time">14:00</div>
+          <div class="event-badge badge-hotel">🏨</div>
+          <div class="event-info">
+            <div class="event-name">Amanta Hotel Nongkhai</div>
+            <div class="event-detail">Stay 1 night before crossing to Laos</div>
+          </div>
+          <div class="event-tag tag-hotel">Hotel</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-section" style="animation-delay:.1s">
+      <div class="day-header">
+        <div class="day-chip">May 1 · Fri</div>
+        <div class="day-title-text">Vientiane → Luang Prabang</div>
+        <div class="day-line"></div>
+      </div>
+      <div class="events-grid">
+        <div class="event-card key">
+          <div class="event-time">07:00</div>
+          <div class="event-badge badge-activity">⭐</div>
+          <div class="event-info">
+            <div class="event-name">Leave for Vientiane Station</div>
+            <div class="event-detail">Leave Amanta Nongkhai to catch train</div>
+          </div>
+          <div class="event-tag tag-activity">Key</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">09:50</div>
+          <div class="event-badge badge-train">🚂</div>
+          <div class="event-info">
+            <div class="event-name">Train C92 — Vientiane → Luang Prabang</div>
+            <div class="event-detail">Seat 01F and 01D</div>
+          </div>
+          <div class="event-tag tag-train">Train</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">12:00</div>
+          <div class="event-badge badge-food">🍜</div>
+          <div class="event-info">
+            <div class="event-name">ส้มตำปาตึ้ม</div>
+          </div>
+          <div class="event-tag tag-food">Lunch</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">14:00</div>
+          <div class="event-badge badge-hotel">🏨</div>
+          <div class="event-info">
+            <div class="event-name">U Luang Prabang</div>
+            <div class="event-detail">Premier with Bathtub · 2 nights</div>
+          </div>
+          <div class="event-tag tag-hotel">Hotel</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">17:00</div>
+          <div class="event-badge badge-sight">🛕</div>
+          <div class="event-info">
+            <div class="event-name">วัดเชียงทอง (Wat Xieng Thong)</div>
+          </div>
+          <div class="event-tag tag-sight">Sight</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">19:00</div>
+          <div class="event-badge badge-food">🍽</div>
+          <div class="event-info">
+            <div class="event-name">Gaspard Restaurant</div>
+          </div>
+          <div class="event-tag tag-food">Dinner</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-section" style="animation-delay:.15s">
+      <div class="day-header">
+        <div class="day-chip">May 2 · Sat</div>
+        <div class="day-title-text">Kuang Si Falls Day</div>
+        <div class="day-line"></div>
+      </div>
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-time">07:00</div>
+          <div class="event-badge badge-moto">🏍</div>
+          <div class="event-info">
+            <div class="event-name">Go to Tad Kuang Xi Waterfall</div>
+            <div class="event-detail">Rent motorcycle</div>
+          </div>
+          <div class="event-tag tag-moto">Moto</div>
+        </div>
+        <div class="event-card key">
+          <div class="event-time">08:00</div>
+          <div class="event-badge badge-activity">⭐</div>
+          <div class="event-info">
+            <div class="event-name">Tad Kuang Xi Waterfall</div>
+          </div>
+          <div class="event-tag tag-activity">Key</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">12:00</div>
+          <div class="event-badge badge-food">🍽</div>
+          <div class="event-info">
+            <div class="event-name">Carp Diem / Forest Bistro</div>
+          </div>
+          <div class="event-tag tag-food">Lunch</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">13:00</div>
+          <div class="event-badge badge-food">☕</div>
+          <div class="event-info">
+            <div class="event-name">Luang Prabang Buffalo Diary</div>
+          </div>
+          <div class="event-tag tag-food">Snack</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">14:00</div>
+          <div class="event-badge badge-moto">🏍</div>
+          <div class="event-info">
+            <div class="event-name">กลับหลวงพระบาง</div>
+          </div>
+          <div class="event-tag tag-moto">Moto</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">15:30</div>
+          <div class="event-badge badge-shopping">🛍</div>
+          <div class="event-info">
+            <div class="event-name">BAI MIENG Lao Ancient Tea Shop</div>
+          </div>
+          <div class="event-tag tag-shopping">Shop</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">18:00</div>
+          <div class="event-badge badge-food">🍽</div>
+          <div class="event-info">
+            <div class="event-name">Dalongyan Hotpot Luang Prabang</div>
+          </div>
+          <div class="event-tag tag-food">Dinner</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-section" style="animation-delay:.2s">
+      <div class="day-header">
+        <div class="day-chip">May 3 · Sun</div>
+        <div class="day-title-text">Luang Prabang → Vang Vieng</div>
+        <div class="day-line"></div>
+      </div>
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-time">09:00</div>
+          <div class="event-badge badge-food">☕</div>
+          <div class="event-info">
+            <div class="event-name">Breakfast at U Luang Prabang</div>
+          </div>
+          <div class="event-tag tag-food">Breakfast</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">12:28</div>
+          <div class="event-badge badge-train">🚂</div>
+          <div class="event-info">
+            <div class="event-name">Train C91 — Luang Prabang → Vang Vieng</div>
+            <div class="event-detail">Seat 08F and 08D</div>
+          </div>
+          <div class="event-tag tag-train">Train</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">14:00</div>
+          <div class="event-badge badge-hotel">🏨</div>
+          <div class="event-info">
+            <div class="event-name">Amari Vang Vieng</div>
+            <div class="event-detail">Deluxe King City View · 1 night</div>
+          </div>
+          <div class="event-tag tag-hotel">Hotel</div>
+        </div>
+        <div class="event-card key">
+          <div class="event-time">14:30</div>
+          <div class="event-badge badge-moto">🏍</div>
+          <div class="event-info">
+            <div class="event-name">Angle Cave, Tham None</div>
+            <div class="event-detail">Motorcycle trip to caves</div>
+          </div>
+          <div class="event-tag tag-moto">Moto</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">17:00</div>
+          <div class="event-badge badge-activity">🛶</div>
+          <div class="event-info">
+            <div class="event-name">Tubing / Kayaking — Song River</div>
+          </div>
+          <div class="event-tag tag-activity">Activity</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">18:00</div>
+          <div class="event-badge badge-food">🍽</div>
+          <div class="event-info">
+            <div class="event-name">Big Mama Sandwich</div>
+          </div>
+          <div class="event-tag tag-food">Dinner</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-section" style="animation-delay:.25s">
+      <div class="day-header">
+        <div class="day-chip">May 4 · Mon</div>
+        <div class="day-title-text">Vang Vieng → Vientiane → Home</div>
+        <div class="day-line"></div>
+      </div>
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-time">13:38</div>
+          <div class="event-badge badge-train">🚂</div>
+          <div class="event-info">
+            <div class="event-name">Train C91 — Vang Vieng → Vientiane</div>
+            <div class="event-detail">Seat 01F and 01D</div>
+          </div>
+          <div class="event-tag tag-train">Train</div>
+        </div>
+        <div class="event-card">
+          <div class="event-time">15:30</div>
+          <div class="event-badge badge-shopping">🛍</div>
+          <div class="event-info">
+            <div class="event-name">Talat Sao / Parkson — Vientiane</div>
+            <div class="event-detail">Siam Laos area · souvenir shopping</div>
+          </div>
+          <div class="event-tag tag-shopping">Shop</div>
+        </div>
+        <div class="event-card key">
+          <div class="event-time">17:30</div>
+          <div class="event-badge badge-activity">🏁</div>
+          <div class="event-info">
+            <div class="event-name">Leave for Nongkhai</div>
+          </div>
+          <div class="event-tag tag-activity">Depart</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="tab-map" class="tab-content">
+    <div id="map-section">
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterMap('all',this)">All</button>
+        <button class="filter-btn" onclick="filterMap('nongkhai',this)">Nongkhai</button>
+        <button class="filter-btn" onclick="filterMap('vientiane',this)">Vientiane</button>
+        <button class="filter-btn" onclick="filterMap('luangprabang',this)">Luang Prabang</button>
+        <button class="filter-btn" onclick="filterMap('vangvieng',this)">Vang Vieng</button>
+      </div>
+      <div id="map-box"><div id="map"></div></div>
+      <div class="map-legend">
+        <div class="leg"><div class="leg-dot" style="background:#A78BFA"></div>Hotel</div>
+        <div class="leg"><div class="leg-dot" style="background:#3FE8D8"></div>Transport</div>
+        <div class="leg"><div class="leg-dot" style="background:#FF5C8A"></div>Sightseeing</div>
+        <div class="leg"><div class="leg-dot" style="background:#FF7A3D"></div>Food</div>
+        <div class="leg"><div class="leg-dot" style="background:#FFD43B"></div>Shopping</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  if (name === 'map') {
+    window.mapTabOpened = true;
+    if (window.mapsReady && !window.mapInitialized) { initMap(); window.mapInitialized = true; }
+  }
+}
+
+const pins = [
+  {lat:17.8782,lng:102.7437,title:'Amanta Hotel Nongkhai',city:'nongkhai',color:'#A78BFA',info:'Apr 30 · Check-in<br>1 night before crossing to Laos'},
+  {lat:18.0339,lng:102.7035,title:'Vientiane Train Station',city:'vientiane',color:'#3FE8D8',info:'May 1 · 09:50 · Train C92 → Luang Prabang<br>Seat 01F & 01D'},
+  {lat:17.9667,lng:102.6012,title:'Talat Sao / Parkson',city:'vientiane',color:'#FFD43B',info:'May 4 · 15:30 · Souvenir shopping'},
+  {lat:19.8881,lng:102.1347,title:'U Luang Prabang',city:'luangprabang',color:'#A78BFA',info:'May 1–3 · Check-in<br>Premier with Bathtub · 2 nights'},
+  {lat:19.8944,lng:102.1328,title:'Wat Xieng Thong',city:'luangprabang',color:'#FF5C8A',info:'May 1 · 17:00 · Temple sightseeing'},
+  {lat:19.8906,lng:102.1344,title:'Gaspard Restaurant',city:'luangprabang',color:'#FF7A3D',info:'May 1 · 19:00 · Dinner'},
+  {lat:19.7708,lng:102.0236,title:'Tad Kuang Xi Waterfall',city:'luangprabang',color:'#FF5C8A',info:'May 2 · 08:00 · ⭐ Key Activity'},
+  {lat:19.7739,lng:102.0277,title:'Carp Diem / Forest Bistro',city:'luangprabang',color:'#FF7A3D',info:'May 2 · 12:00 · Lunch'},
+  {lat:19.8857,lng:102.1368,title:'Luang Prabang Buffalo Diary',city:'luangprabang',color:'#FF7A3D',info:'May 2 · 13:00 · Snack'},
+  {lat:19.8875,lng:102.1340,title:'BAI MIENG Lao Ancient Tea Shop',city:'luangprabang',color:'#FFD43B',info:'May 2 · 15:30 · Tea shopping'},
+  {lat:19.8862,lng:102.1358,title:'Dalongyan Hotpot',city:'luangprabang',color:'#FF7A3D',info:'May 2 · 18:00 · Dinner'},
+  {lat:19.8853,lng:102.1377,title:'Luang Prabang Train Station',city:'luangprabang',color:'#3FE8D8',info:'May 3 · 12:28 · Train C91 → Vang Vieng<br>Seat 08F & 08D'},
+  {lat:18.9213,lng:102.4502,title:'Amari Vang Vieng',city:'vangvieng',color:'#A78BFA',info:'May 3 · Check-in · Deluxe King City View'},
+  {lat:18.9283,lng:102.4393,title:'Tham None / Angle Cave',city:'vangvieng',color:'#FF5C8A',info:'May 3 · 14:30 · Cave exploration by moto'},
+  {lat:18.9188,lng:102.4518,title:'Song River — Tubing/Kayaking',city:'vangvieng',color:'#FF5C8A',info:'May 3 · 17:00 · River activities'},
+  {lat:18.9225,lng:102.4490,title:'Big Mama Sandwich',city:'vangvieng',color:'#FF7A3D',info:'May 3 · 18:00 · Dinner'},
+  {lat:18.9218,lng:102.4483,title:'Vang Vieng Train Station',city:'vangvieng',color:'#3FE8D8',info:'May 4 · 13:38 · Train C91 → Vientiane<br>Seat 01F & 01D'},
+];
+
+let map, markers=[], iw;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center:{lat:19.1,lng:102.4}, zoom:7, mapTypeId:'roadmap',
+    styles:[
+      {elementType:'geometry',stylers:[{color:'#1a1a1a'}]},
+      {elementType:'labels.text.stroke',stylers:[{color:'#1a1a1a'}]},
+      {elementType:'labels.text.fill',stylers:[{color:'#999'}]},
+      {featureType:'water',elementType:'geometry',stylers:[{color:'#0D1B2A'}]},
+      {featureType:'road',elementType:'geometry',stylers:[{color:'#2a2a2a'}]},
+      {featureType:'road.arterial',elementType:'geometry',stylers:[{color:'#333'}]},
+      {featureType:'poi',elementType:'geometry',stylers:[{color:'#212121'}]},
+      {featureType:'administrative',elementType:'geometry.stroke',stylers:[{color:'#444'}]},
+      {featureType:'administrative.country',elementType:'labels.text.fill',stylers:[{color:'#C6FF4E'}]},
+    ],
+    zoomControl:true, streetViewControl:false, mapTypeControl:false, fullscreenControl:false,
+  });
+
+  iw = new google.maps.InfoWindow();
+
+  pins.forEach((d,i) => {
+    const m = new google.maps.Marker({
+      position:{lat:d.lat,lng:d.lng}, map,
+      title:d.title,
+      icon:{path:google.maps.SymbolPath.CIRCLE,scale:9,fillColor:d.color,fillOpacity:1,strokeColor:'#0D0D0D',strokeWeight:2},
+      animation:google.maps.Animation.DROP, data:d,
+    });
+    m.addListener('click', () => {
+      iw.setContent(`<div style="font-family:'Space Grotesk',sans-serif;padding:6px 8px;max-width:230px;">
+        <strong style="font-size:14px;color:${d.color}">${d.title}</strong>
+        <div style="margin-top:6px;font-size:12px;color:#aaa;line-height:1.6;">${d.info}</div>
+      </div>`);
+      iw.open(map,m);
+    });
+    markers.push(m);
+  });
+
+  new google.maps.Polyline({
+    path:[
+      {lat:17.8782,lng:102.7437},{lat:18.0339,lng:102.7035},
+      {lat:19.8881,lng:102.1347},{lat:18.9213,lng:102.4502},
+      {lat:18.0339,lng:102.7035},{lat:17.8782,lng:102.7437},
+    ],
+    geodesic:true, strokeColor:'#C6FF4E', strokeOpacity:0.4, strokeWeight:2, map,
+  });
+}
+
+function filterMap(city, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const bounds = new google.maps.LatLngBounds();
+  let any=false;
+  markers.forEach((m,i)=>{
+    const v = city==='all'||pins[i].city===city;
+    m.setVisible(v);
+    if(v){bounds.extend(m.getPosition());any=true;}
+  });
+  if(any) map.fitBounds(bounds,{padding:80});
+}
+
+function initMapCallback() {
+  window.mapsReady = true;
+  if (window.mapTabOpened) { initMap(); window.mapInitialized = true; }
+}
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&callback=initMapCallback"></script>
+</body>
+</html>
