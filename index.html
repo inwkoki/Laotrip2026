@@ -523,35 +523,26 @@ function switchTab(name, btn) {
 }
 
 const pins = [
-  {lat:17.8757,lng:102.7421,title:'Amanta Hotel Nongkhai',city:'nongkhai',color:'#A78BFA',info:'Apr 30 · Check-in<br>1 night before crossing to Laos'},
-  {lat:17.9757,lng:102.6331,title:'Vientiane Train Station',city:'vientiane',color:'#3FE8D8',info:'May 1 · 09:50 · Train C92 → Luang Prabang<br>Seat 01F & 01D'},
-  {lat:17.9645,lng:102.6138,title:'Talat Sao / Parkson',city:'vientiane',color:'#FFD43B',info:'May 4 · 15:30 · Souvenir shopping'},
-  {lat:19.8925,lng:102.1358,title:'U Luang Prabang',city:'luangprabang',color:'#A78BFA',info:'May 1–3 · Check-in<br>Premier with Bathtub · 2 nights'},
-  {lat:19.8963,lng:102.1341,title:'Wat Xieng Thong',city:'luangprabang',color:'#FF5C8A',info:'May 1 · 17:00 · Temple sightseeing'},
-  {lat:19.8918,lng:102.1372,title:'Gaspard Restaurant',city:'luangprabang',color:'#FF7A3D',info:'May 1 · 19:00 · Dinner'},
-  {lat:19.7297,lng:102.0814,title:'Tad Kuang Xi Waterfall',city:'luangprabang',color:'#FF5C8A',info:'May 2 · 08:00 · Key Activity'},
-  {lat:19.7300,lng:102.0820,title:'Carp Diem / Forest Bistro',city:'luangprabang',color:'#FF7A3D',info:'May 2 · 12:00 · Lunch'},
-  {lat:19.8890,lng:102.1340,title:'Luang Prabang Buffalo Diary',city:'luangprabang',color:'#FF7A3D',info:'May 2 · 13:00 · Snack'},
-  {lat:19.8885,lng:102.1355,title:'BAI MIENG Lao Ancient Tea Shop',city:'luangprabang',color:'#FFD43B',info:'May 2 · 15:30 · Tea shopping'},
-  {lat:19.8870,lng:102.1348,title:'Dalongyan Hotpot',city:'luangprabang',color:'#FF7A3D',info:'May 2 · 18:00 · Dinner'},
-  {lat:19.8833,lng:102.1442,title:'Luang Prabang Train Station',city:'luangprabang',color:'#3FE8D8',info:'May 3 · 12:28 · Train C91 → Vang Vieng<br>Seat 08F & 08D'},
-  {lat:18.9247,lng:102.4481,title:'Amari Vang Vieng',city:'vangvieng',color:'#A78BFA',info:'May 3 · Check-in · Deluxe King City View'},
-  {lat:18.9380,lng:102.4260,title:'Tham None (Angel Cave)',city:'vangvieng',color:'#FF5C8A',info:'May 3 · 14:30 · Cave exploration by moto'},
-  {lat:18.9220,lng:102.4430,title:'Song River Tubing/Kayaking',city:'vangvieng',color:'#FF5C8A',info:'May 3 · 17:00 · River activities'},
-  {lat:18.9238,lng:102.4475,title:'Big Mama Sandwich',city:'vangvieng',color:'#FF7A3D',info:'May 3 · 18:00 · Dinner'},
-  {lat:18.9148,lng:102.4583,title:'Vang Vieng Train Station',city:'vangvieng',color:'#3FE8D8',info:'May 4 · 13:38 · Train C91 → Vientiane<br>Seat 01F & 01D'},
+  {lat:17.8782,lng:102.7437,title:'Amanta Hotel Nongkhai',city:'nongkhai',color:'#A78BFA',info:'Apr 30 · Check-in<br>1 night before crossing to Laos'},
+  {lat:18.0339,lng:102.7035,title:'Vientiane Train Station',city:'vientiane',color:'#3FE8D8',info:'May 1 · 09:50 · Train C92 → Luang Prabang<br>Seat 01F & 01D'},
+  {lat:17.9667,lng:102.6012,title:'Talat Sao / Parkson',city:'vientiane',color:'#FFD43B',info:'May 4 · 15:30 · Souvenir shopping'},
+  {lat:19.8881,lng:102.1347,title:'U Luang Prabang',city:'luangprabang',color:'#A78BFA',info:'May 1–3 · Check-in<br>Premier with Bathtub · 2 nights'},
+  {lat:19.8944,lng:102.1328,title:'Wat Xieng Thong',city:'luangprabang',color:'#FF5C8A',info:'May 1 · 17:00 · Temple sightseeing'},
+  {lat:19.8906,lng:102.1344,title:'Gaspard Restaurant',city:'luangprabang',color:'#FF7A3D',info:'May 1 · 19:00 · Dinner'},
+  {lat:19.7708,lng:102.0236,title:'Tad Kuang Xi Waterfall',city:'luangprabang',color:'#FF5C8A',info:'May 2 · 08:00 · ⭐ Key Activity'},
+  {lat:19.7739,lng:102.0277,title:'Carp Diem / Forest Bistro',city:'luangprabang',color:'#FF7A3D',info:'May 2 · 12:00 · Lunch'},
+  {lat:19.8857,lng:102.1368,title:'Luang Prabang Buffalo Diary',city:'luangprabang',color:'#FF7A3D',info:'May 2 · 13:00 · Snack'},
+  {lat:19.8875,lng:102.1340,title:'BAI MIENG Lao Ancient Tea Shop',city:'luangprabang',color:'#FFD43B',info:'May 2 · 15:30 · Tea shopping'},
+  {lat:19.8862,lng:102.1358,title:'Dalongyan Hotpot',city:'luangprabang',color:'#FF7A3D',info:'May 2 · 18:00 · Dinner'},
+  {lat:19.8853,lng:102.1377,title:'Luang Prabang Train Station',city:'luangprabang',color:'#3FE8D8',info:'May 3 · 12:28 · Train C91 → Vang Vieng<br>Seat 08F & 08D'},
+  {lat:18.9213,lng:102.4502,title:'Amari Vang Vieng',city:'vangvieng',color:'#A78BFA',info:'May 3 · Check-in · Deluxe King City View'},
+  {lat:18.9283,lng:102.4393,title:'Tham None / Angle Cave',city:'vangvieng',color:'#FF5C8A',info:'May 3 · 14:30 · Cave exploration by moto'},
+  {lat:18.9188,lng:102.4518,title:'Song River — Tubing/Kayaking',city:'vangvieng',color:'#FF5C8A',info:'May 3 · 17:00 · River activities'},
+  {lat:18.9225,lng:102.4490,title:'Big Mama Sandwich',city:'vangvieng',color:'#FF7A3D',info:'May 3 · 18:00 · Dinner'},
+  {lat:18.9218,lng:102.4483,title:'Vang Vieng Train Station',city:'vangvieng',color:'#3FE8D8',info:'May 4 · 13:38 · Train C91 → Vientiane<br>Seat 01F & 01D'},
 ];
 
 let map, markers=[], iw;
-
-function makeNumberIcon(num, color) {
-  const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="40" viewBox="0 0 32 40"><path d="M16 0 C7.16 0 0 7.16 0 16 C0 28 16 40 16 40 C16 40 32 28 32 16 C32 7.16 24.84 0 16 0Z" fill="' + color + '"/><circle cx="16" cy="16" r="10" fill="#000" opacity="0.25"/><text x="16" y="21" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#0D0D0D">' + num + '</text></svg>';
-  return {
-    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
-    scaledSize: new google.maps.Size(32, 40),
-    anchor: new google.maps.Point(16, 40),
-  };
-}
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -572,21 +563,30 @@ function initMap() {
 
   iw = new google.maps.InfoWindow();
 
-  const cityIdx = {};
-  pins.forEach((d) => {
-    cityIdx[d.city] = (cityIdx[d.city] || 0) + 1;
-    const num = cityIdx[d.city];
+  pins.forEach((d,i) => {
     const m = new google.maps.Marker({
       position:{lat:d.lat,lng:d.lng}, map,
       title:d.title,
-      icon: makeNumberIcon(num, d.color),
-      data:d,
+      icon:{path:google.maps.SymbolPath.CIRCLE,scale:9,fillColor:d.color,fillOpacity:1,strokeColor:'#0D0D0D',strokeWeight:2},
+      animation:google.maps.Animation.DROP, data:d,
     });
     m.addListener('click', () => {
-      iw.setContent('<div style="font-family:sans-serif;padding:6px 8px;max-width:230px;"><strong style="font-size:14px;color:' + d.color + '">' + d.title + '</strong><div style="margin-top:6px;font-size:12px;color:#555;line-height:1.6;">' + d.info + '</div></div>');
+      iw.setContent(`<div style="font-family:'Space Grotesk',sans-serif;padding:6px 8px;max-width:230px;">
+        <strong style="font-size:14px;color:${d.color}">${d.title}</strong>
+        <div style="margin-top:6px;font-size:12px;color:#aaa;line-height:1.6;">${d.info}</div>
+      </div>`);
       iw.open(map,m);
     });
     markers.push(m);
+  });
+
+  new google.maps.Polyline({
+    path:[
+      {lat:17.8782,lng:102.7437},{lat:18.0339,lng:102.7035},
+      {lat:19.8881,lng:102.1347},{lat:18.9213,lng:102.4502},
+      {lat:18.0339,lng:102.7035},{lat:17.8782,lng:102.7437},
+    ],
+    geodesic:true, strokeColor:'#C6FF4E', strokeOpacity:0.4, strokeWeight:2, map,
   });
 }
 
@@ -608,6 +608,6 @@ function initMapCallback() {
   if (window.mapTabOpened) { initMap(); window.mapInitialized = true; }
 }
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3HFMBvz8s_PQXHmnxBA1SKDrArtw1Hk8&callback=initMapCallback"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&callback=initMapCallback"></script>
 </body>
 </html>
